@@ -1,0 +1,31 @@
+.nic-details-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+  padding: 0 50px;
+}
+
+.nic-box {
+  background-color: #f0f9f0; 
+  padding: 12px 18px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.nic-label {
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  text-align: start;
+}
+
+.nic-value {
+  color: green;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: start;
+}

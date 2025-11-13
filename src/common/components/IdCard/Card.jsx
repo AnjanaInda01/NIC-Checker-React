@@ -2,13 +2,13 @@ import React from "react";
 import "./style.css";
 import Idcard from "../../../assets/Id_new.png";
 
-export default function Card() {
+export default function Card({ onImageClick }) {
   return (
-    <div className="image-container">
+    <div className="image-container" onClick={onImageClick}>
       <h1>Check NIC details</h1>
-      <div class="nic-card">
+      <div className="nic-card">
         <img src={Idcard} alt="NIC Card" />
-        <div class="overlay">Click</div>
+        <div className="overlay">Click</div>
       </div>
     </div>
   );
