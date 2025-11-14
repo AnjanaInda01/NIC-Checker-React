@@ -4,4 +4,14 @@
   padding: 2rem;
   text-align: center;
 }
+body.light {
+  background-color: #ffffff;
+  color: #373636;
+  transition: background 0.3s;
+}
 
+body.dark {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  transition: background 0.3s;
+}

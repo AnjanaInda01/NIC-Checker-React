@@ -3,17 +3,20 @@ h1 {
 }
 .nic-card {
   position: relative;
-  display: inline-block;
+  display: inline-block; 
   cursor: pointer;
+  width: 350px; 
+  border-radius: 8px;
+  overflow: hidden; 
 }
 
 .nic-card img {
-  width: 350px; /* adjust as needed */
+  width: 100%; 
+  display: block; 
   border-radius: 8px;
   transition: 0.3s ease;
 }
 
-/* overlay text hidden by default */
 .nic-card .overlay {
   position: absolute;
   top: 0;
@@ -29,15 +32,12 @@ h1 {
   background: rgba(0, 128, 0, 0.5);
   opacity: 0;
   transition: opacity 0.3s ease;
-  border-radius: 8px;
 }
 
-/* on hover show overlay */
 .nic-card:hover .overlay {
   opacity: 1;
 }
 
-/* optional: zoom image a little when hover */
 .nic-card:hover img {
   transform: scale(1.05);
 }

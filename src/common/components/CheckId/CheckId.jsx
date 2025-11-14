@@ -7,7 +7,8 @@ import "./style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
-// Custom NIC parser
+
+
 function parseNIC(nic) {
   if (!nic) return null;
 
@@ -70,7 +71,7 @@ export default function CheckId({ onCancel }) {
           onChange={(e) => setNic(e.target.value)}
           placeholder="Enter NIC No"
         />
-        <Btn className="btn" text="Submit" type="submit" />
+        <Btn className="btn" text="Submit" type="submit"  />
       </form>
 
       {details && (

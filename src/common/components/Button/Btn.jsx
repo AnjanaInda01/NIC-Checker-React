@@ -6,7 +6,7 @@ export default function Btn({ className, text, type = "button", onClick }) {
   return (
     <div className={className}>
       <Stack spacing={2} direction="row" sx={{ width: "100%" }}>
-        <Button variant="contained" fullWidth type={type} onClick={onClick}>
+        <Button variant="contained" fullWidth type={type} onClick={onClick} style={{ backgroundColor: "green", color: "white" }}>
           {text}
         </Button>
       </Stack>
