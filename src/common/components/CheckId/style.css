@@ -10,7 +10,7 @@
   width: 400px;
   margin: 40px auto;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  gap: 10px;
+  gap: 20px;
 }
 .cancel-icon {
   position: absolute;
