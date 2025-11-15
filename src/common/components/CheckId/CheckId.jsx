@@ -6,36 +6,7 @@ import NICDetails from "../NICDetails/NICDetails";
 import "./style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-
-
-
-function parseNIC(nic) {
-  if (!nic) return null;
-
-  nic = nic.trim();
-
-  if (nic.length === 12) {
-    const year = parseInt(nic.slice(0, 4));
-    let dayOfYear = parseInt(nic.slice(4, 7));
-    let gender = "Male";
-
-    if (dayOfYear > 500) {
-      gender = "Female";
-      dayOfYear -= 500;
-    }
-
-    const date = new Date(year, 0);
-    date.setDate(dayOfYear);
-
-    return {
-      nic,
-      birthday: date.toISOString().split("T")[0],
-      gender,
-    };
-  }
-
-  return null;
-}
+import lankaNIC from "lanka-nic";
 
 export default function CheckId({ onCancel }) {
   const [nic, setNic] = useState("");
@@ -44,14 +15,32 @@ export default function CheckId({ onCancel }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const data = parseNIC(nic);
-    if (!data) {
-      alert("Invalid NIC number! Please try again.");
-      setDetails(null);
-      return;
+    const fullNIC = nic.trim(); 
+    let nicToCheck = fullNIC;
+
+  
+    if (/^\d{12}$/.test(nicToCheck)) {
+      nicToCheck = nicToCheck.slice(2);
     }
 
-    setDetails(data);
+    try {
+      const data = lankaNIC.getInfoFromNIC(nicToCheck);
+      if (!data) {
+        alert("Invalid NIC number!");
+        setDetails(null);
+        return;
+      }
+
+      setDetails({
+        fullNIC,
+        nic: nicToCheck, 
+        birthday: data.dateOfBirth.toISOString().split("T")[0],
+        gender: data.gender,
+      });
+    } catch (error) {
+      alert("Invalid NIC number!");
+      setDetails(null);
+    }
   };
 
   return (
@@ -61,9 +50,7 @@ export default function CheckId({ onCancel }) {
         className="cancel-icon"
         onClick={onCancel}
       />
-
       <img src={Idcard} alt="NIC Card" className="id" />
-
       <form className="form" onSubmit={handleSubmit}>
         <Text
           className="text"
@@ -71,12 +58,11 @@ export default function CheckId({ onCancel }) {
           onChange={(e) => setNic(e.target.value)}
           placeholder="Enter NIC No"
         />
-        <Btn className="btn" text="Submit" type="submit"  />
+        <Btn className="btn" text="Submit" type="submit" />
       </form>
-
       {details && (
         <NICDetails
-          nic={details.nic}
+          nic={details.fullNIC}
           birthday={details.birthday}
           gender={details.gender}
         />
